@@ -136,7 +136,7 @@ conda activate tf
 and try importing tensorflow using Python.
 
 ```
-(tf) [srx907@gpu01-snm-willerslev ~]$ python
+$ python
 Python 3.9.4 | packaged by conda-forge | (default, May 10 2021, 22:13:33) 
 [GCC 9.3.0] on linux
 Type "help", "copyright", "credits" or "license" for more information.
