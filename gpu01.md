@@ -278,7 +278,7 @@ in the same conda environment where you installed tensorflow. E.g.
 conda install -n tf jupyter
 ```
 
-See https://github.com/RacimoLab/it-docs/blob/main/ssh.md#ssh-port-forwarding
+See [ssh.md](ssh.md#ssh-port-forwarding)
 for information about using ssh port forwarding to connect your web browser to
 the notebook running on the gpu01 node.
 
