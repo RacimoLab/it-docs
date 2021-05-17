@@ -266,3 +266,24 @@ $ python -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU
 ```
 
 Ahhh... That's better. :)
+
+
+# Jupyter notebooks
+
+It's also possible to use the GPUs from within a jupyter notebook.
+The easiest way to do this is to install the `jupyter` conda package
+in the same conda environment where you installed tensorflow. E.g.
+
+```
+conda install -n tf jupyter
+```
+
+See https://github.com/RacimoLab/JupyterNotebook_in_Willerslev_servers
+for information about using ssh tunnels to connect your web browser to
+the notebook running on the gpu01 node.
+
+**Note: the environment variables that are set when you start your
+notebook will reflect which GPUs are visible to tensorflow.**
+To be kind to other users of the gpu01 system, please close your
+jupyter server when you're not using it, to ensure that other lab
+members can use the GPU resources.
