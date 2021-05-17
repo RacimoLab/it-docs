@@ -62,7 +62,7 @@ Host gpu
 # SSH port forwarding
 
 Sometimes it's useful to run a server application on a compute node,
-and your your workstation as a client. E.g. running a `jupyter` notebook
+and use your workstation as a client. E.g. running a `jupyter` notebook
 on the compute node and connecting from your workstation's web browser,
 or running `tensorboard` on the compute node and connecting from your
 workstation's web browser.
