@@ -6,7 +6,7 @@ Keys are more convenient, because typing a password when logging
 in can be avoided.
 
 1. On your (Mac or Linux) workstation, create the public/private key pair.
-When prompted for a passphrase, just hit <enter> so that you
+When prompted for a passphrase, just hit enter so that you
 won't need a password when logging in.
 
 ```
