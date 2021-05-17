@@ -43,7 +43,7 @@ Host snm
 ## Logging into a compute node directly
 
 To login to a compute node, usually one needs to first ssh into the
-`ssh-snm-willerslev.science.ku.dk` node (known as the "head" node",
+`ssh-snm-willerslev.science.ku.dk` node (known as the "head node",
 the "login node", or the "bastion node"), and then ssh to one of the
 compute nodes. This can be inconvenient if you're always logging in
 to the same compute node. With the following addition to the
