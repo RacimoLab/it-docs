@@ -211,7 +211,7 @@ which GPUs).
 
 To avoid this, we must set the
 [`CUDA_VISIBLE_DEVICES`](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#env-vars)
-environment variable. If the variable is not set), all GPU devices will
+environment variable. If the variable is not set, all GPU devices will
 be visible to tensorflow. We can set this to the numerical ID (or IDs) of
 the GPUs that we want to allow tensorflow to use.
 
