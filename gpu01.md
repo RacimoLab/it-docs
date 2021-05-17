@@ -278,8 +278,8 @@ in the same conda environment where you installed tensorflow. E.g.
 conda install -n tf jupyter
 ```
 
-See https://github.com/RacimoLab/JupyterNotebook_in_Willerslev_servers
-for information about using ssh tunnels to connect your web browser to
+See https://github.com/RacimoLab/it-docs/blob/main/ssh.md#ssh-port-forwarding
+for information about using ssh port forwarding to connect your web browser to
 the notebook running on the gpu01 node.
 
 **Note: the environment variables that are set when you start your
