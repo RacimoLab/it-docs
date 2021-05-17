@@ -57,6 +57,7 @@ Host gpu
 	Hostname gpu01-snm-willerslev
 	User abc123
 	ProxyJump snm
+	ServerAliveInterval 60
 ```
 
 # SSH port forwarding
