@@ -93,3 +93,6 @@ ssh -L 8888:localhost:8888 gpu
 ```
 
 And then open the localhost:8888/?token=blah url on your workstation.
+
+A more detailed discussion of ssh tunnelling can be found at:
+https://github.com/RacimoLab/JupyterNotebook_in_Willerslev_servers
