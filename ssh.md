@@ -17,7 +17,7 @@ ssh-keygen
 This can be done manually, but the easiest way is:
 
 ```
-ssh-copy-id <username>@ssh-snm-willerslev.science.ku.dk
+ssh-copy-id -i ~/.ssh/mykey <username>@ssh-snm-willerslev.science.ku.dk
 ```
 
 This will prompt for a password to authenticate with the remote
