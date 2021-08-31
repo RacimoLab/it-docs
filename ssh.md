@@ -31,6 +31,14 @@ accept keys located in the `/etc/ssh/authorized_keys/` folder, which
 can only be written to by users with `sudo` privileges. Contact an admin
 to do this on your behalf.
 
+They will have to type the following:
+```
+sudo cp ~/.ssh/authorized_keys /etc/ssh/authorized_keys/[userid]
+sudo chmod 600 /etc/ssh/authorized_keys/[userid]
+sudo chown [userid]:users /etc/ssh/authorized_keys/[userid]
+```
+where [userid] is your KU user ID.
+
 # SSH config file
 
 Create and use a `~/.ssh/config` file on your workstation. E.g., using a
