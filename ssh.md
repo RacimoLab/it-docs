@@ -26,6 +26,10 @@ future logins will use the key pair for authentication, and will
 not prompt for a password (assuming you login from your workstation,
 which has the private part of your key pair).
 
+**NOTE:** The `racimocomp<XX>fl` compute nodes are configured to only
+accept keys located in the `/etc/ssh/authorized_keys/` folder, which
+can only be written to by users with `sudo` privileges. Contact an admin
+to do this on your behalf.
 
 # SSH config file
 
