@@ -101,3 +101,51 @@ And then open the localhost:8888/?token=blah url on your workstation.
 
 A more detailed discussion of ssh tunnelling can be found at:
 https://github.com/RacimoLab/JupyterNotebook_in_Willerslev_servers
+
+# Running a command on multiple hosts
+
+Sometimes it can be useful to run the same command on multiple nodes
+simultaneously. E.g., to install software using the systems' native
+package manager, or to identify a node that is not being utilised.
+
+There are [many ways to achieve this](https://unix.stackexchange.com/questions/19008/automatically-run-commands-over-ssh-on-many-servers),
+but we'll provide an example using [`pssh`](https://github.com/lilydjwg/pssh).
+
+First, install pssh on your workstation.
+```
+pip install git+https://github.com/lilydjwg/pssh
+```
+
+Then create a hosts list. E.g.
+```
+$ cat ~/.ssh/racimocomp.txt
+racimocomp01fl
+racimocomp02fl
+racimocomp03fl
+racimocomp04fl
+racimocomp05fl
+racimocomp06fl
+racimocomp07fl
+```
+
+Pssh will use the settings in your `~/.ssh/config` to login to each
+remote system. The following command assumes you have an appropriate
+config entry that sets the correct username for the racimocomp nodes.
+
+```
+$ pssh -h ~/.ssh/racimocomp.txt -i uptime
+[1] 12:17:37 [SUCCESS] racimocomp01fl
+ 12:17:37 up 53 days, 21:15,  2 users,  load average: 0.00, 0.00, 0.00
+[2] 12:17:37 [SUCCESS] racimocomp04fl
+ 12:17:37 up 53 days, 20:05,  0 users,  load average: 0.00, 0.00, 0.00
+[3] 12:17:37 [SUCCESS] racimocomp06fl
+ 12:17:37 up 53 days, 18:53,  0 users,  load average: 0.08, 0.02, 0.01
+[4] 12:17:37 [SUCCESS] racimocomp07fl
+ 12:17:37 up 53 days, 12 min,  0 users,  load average: 0.07, 0.03, 0.00
+[5] 12:17:37 [SUCCESS] racimocomp03fl
+ 12:17:37 up 53 days, 20:07,  0 users,  load average: 0.00, 0.01, 0.00
+[6] 12:17:37 [SUCCESS] racimocomp02fl
+ 12:17:37 up 53 days, 21:01,  0 users,  load average: 0.00, 0.00, 0.00
+[7] 12:17:37 [SUCCESS] racimocomp05fl
+ 12:17:37 up 53 days, 18:09,  0 users,  load average: 0.23, 0.06, 0.02
+```
