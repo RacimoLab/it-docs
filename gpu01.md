@@ -64,6 +64,8 @@ Python and the `tensorflow` machine learning library.
 Because tensorflow has non-Python dependencies (ie., CUDA), we're going to
 use `conda` to install packages and manage dependencies.
 
+See also [conda.md](conda.md).
+
 ### Getting miniconda
 If you don't already have miniconda installed, then:
 
