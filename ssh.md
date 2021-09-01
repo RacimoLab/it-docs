@@ -52,7 +52,7 @@ Host snm
         ServerAliveInterval 60
 ```     
 
-## Logging into a compute node directly
+## Logging into a willerslev compute node directly
 
 To login to a compute node, usually one needs to first ssh into the
 `ssh-snm-willerslev.science.ku.dk` node (known as the "head node",
