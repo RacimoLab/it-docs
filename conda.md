@@ -62,3 +62,8 @@ conda env export --from-history > environment.yaml
 conda env create --name testenv --file environment.yaml
 conda activate testenv
 ```
+
+## Also...
+
+See also the section in the [gpu01 docs](gpu01.md#conda) about making a
+tensorflow conda environment that will use the GPUs.
