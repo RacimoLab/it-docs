@@ -112,7 +112,7 @@ in this case. The pcakge can then be installed with `sudo yum install emacs`.
 However, this would mean the package is only available on that specific
 compute node. For everyone's sanity, it is best to keep the installed
 packages synchronised across all the racimocomp nodes.
-So, [simultaneous installation on all nodes](https://github.com/RacimoLab/it-docs/blob/main/ssh.md#running-a-command-on-multiple-hosts)
+So, [simultaneous installation on all nodes](ssh.md#running-a-command-on-multiple-hosts)
 should be preferred. E.g.
 
 ```
