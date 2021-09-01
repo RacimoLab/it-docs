@@ -40,7 +40,7 @@ Available nodes are `racimocomp<NN>fl`, where `<NN>` is in the range 01--07.
 ## conda
 
 Software required to run a bioinformatics or analysis pipeline should
-be installed under your $HOME in a conda environment.
+be installed under your `$HOME` in a [`conda` environment](conda.md).
 
 ## RHEL packages (rpm/yum)
 
@@ -108,7 +108,7 @@ xvile.x86_64 : VI Like Emacs
 ```
 
 We can see from the above that the package name `emacs` is appropriate
-in this case. The pcakge can then be installed with `sudo yum install emacs`.
+in this case. The package can then be installed with `sudo yum install emacs`.
 However, this would mean the package is only available on that specific
 compute node. For everyone's sanity, it is best to keep the installed
 packages synchronised across all the racimocomp nodes.
