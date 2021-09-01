@@ -20,7 +20,8 @@ at this step may indicate a transient problem or lack of access.
 
 This node has 5x Tesla T4 GPUs, and has different access restrictions
 to the other compute nodes in the willerslev cluster.
-Contact Fernando or Graham to get access.
+Contact Fernando or Graham to get access. See [gpu01.md](gpu01.md)
+for additional details about using the GPUs on this system.
 
 # racimo cluster
 
