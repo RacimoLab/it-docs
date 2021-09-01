@@ -26,7 +26,7 @@ Contact Fernando or Graham to get access.
 
 The "racimo" cluster is located in the "unicph" domain.
 To access these compute nodes, first vpn to the university's
-Cisco AnyConnect server `vpn.ku.dk`, authenticated using your kuid
+Cisco AnyConnect server `vpn.ku.dk`, authenticate using your kuid
 (and multi-factor authentication).
 On Windows or Mac, use the Cisco AnyConnect client, which is (apparently)
 downloadable after logging into https://vnp.ku.dk with a web browser.
