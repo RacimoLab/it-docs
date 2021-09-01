@@ -72,6 +72,66 @@ Host gpu
 	ServerAliveInterval 60
 ```
 
+## Handy host aliases for racimocomp nodes
+
+Typing `racimocomp01fl` is way too many keypresses. You should add
+some aliases for these nodes, to avoid a repetitive strain injury.
+
+```
+Host r01
+	Hostname racimocomp01fl
+
+Host r02
+	Hostname racimocomp02fl
+...
+```
+
+## Putting it all together
+
+Here's a complete example `~/.ssh/config` file.
+
+```
+Match all
+	# Send a "keep-alive" signal every 60 seconds
+	# so the connection doesn't get dropped when
+	# you're not typing.
+	ServerAliveInterval 60
+
+Host r0? racimocomp0?fl gpu snm
+	User abc123
+	# Run graphical programs on the remote system.
+	#ForwardX11 yes
+	#ForwardX11Trusted yes
+
+Host r01
+	Hostname racimocomp01fl
+
+Host r02
+	Hostname racimocomp02fl
+
+Host r03
+	Hostname racimocomp03fl
+
+Host r04
+	Hostname racimocomp04fl
+
+Host r05
+	Hostname racimocomp05fl
+
+Host r06
+	Hostname racimocomp06fl
+
+Host r07
+	Hostname racimocomp07fl
+
+Host snm
+	Hostname ssh-snm-willerslev.science.ku.dk
+
+Host gpu
+	Hostname gpu01-snm-willerslev
+	ProxyJump snm
+```
+
 # SSH port forwarding
 
 Sometimes it's useful to run a server application on a compute node,
