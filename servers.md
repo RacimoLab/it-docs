@@ -1,8 +1,8 @@
 # willerslev cluster
 
 The "willerslev" cluster is located in the "science" domain.
-To access these compute nodes, first ssh to the head node
-`ssh-snm-willerslev.science.ku.dk` with your kuid and then ssh to
+To access these compute nodes, first [`ssh`](ssh.md) to the head node
+`ssh-snm-willerslev.science.ku.dk` with your kuid and then [`ssh`](ssh.md) to
 the desired compute node (listed below).
 The latter step should not prompt for a password, and a password prompt
 at this step may indicate a transient problem or lack of access.
@@ -26,14 +26,13 @@ for additional details about using the GPUs on this system.
 # racimo cluster
 
 The "racimo" cluster is located in the "unicph" domain.
-To access these compute nodes, first vpn to the university's
-Cisco AnyConnect server `vpn.ku.dk`, authenticate using your kuid
-(and multi-factor authentication).
-On Windows or Mac, use the Cisco AnyConnect client, which is (apparently)
-downloadable after logging into https://vnp.ku.dk with a web browser.
-On Linux, you can use `openconnect` to create a vpn connection
-(`openconnect -u <kuid> vpn.ku.dk`).
+These compute nodes are accessed differently to the willerslev nodes,
+so you **should not** logon to the willerslev head node.
+To access these compute nodes,
+[connect to the university's Cisco AnyConnect VPN](vpn.md).
 
+Once you are connected to the vpn, you can [`ssh`](ssh.md) directly to
+a racimo cluster compute node.
 Available nodes are `racimocomp<NN>fl`, where `<NN>` is in the range 01--07.
 
 # Installing software
