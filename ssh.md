@@ -5,7 +5,9 @@ It's recommended to use SSH keys for authentication to the servers.
 Keys are more convenient, because typing a password when logging
 in can be avoided.
 
-1. On your (Mac or Linux) workstation, create the public/private key pair.
+## Creating a public/private key pair
+
+On your (Mac or Linux) workstation, create the public/private key pair.
 When prompted for a passphrase, just hit enter so that you
 won't need a password when logging in.
 
@@ -13,11 +15,28 @@ won't need a password when logging in.
 ssh-keygen
 ```
 
-2. Transfer the public part of your key pair to the remote server.
+## Using an existing public/private key pair
+
+If you have previously created a public/private key pair, you should be
+able to just use this instead of creating a new set. If you have
+forgotten how the key was created, you can use `ssh-keygen` to
+show the key's fingerprint. `DSA` keys should be avoided. An `RSA` key
+with at least 2048 bits should provide sufficient security.
+Finally, `ecdsa` and `ed25519` keys are also fine (don't worry about
+the number of bits for these keys).
+
+```
+$ ssh-keygen -l -f ~/.ssh/id_rsa
+2048 SHA256:7l0HauYJVRaQhuzmti8XEZImnRbzipu3NKGnE6tDFRk grg@t430s (RSA)
+```
+
+## Transferring the key to the server
+
+Transfer the public part of your key pair to the remote server.
 This can be done manually, but the easiest way is:
 
 ```
-ssh-copy-id -i ~/.ssh/mykey <username>@ssh-snm-willerslev.science.ku.dk
+ssh-copy-id -i ~/.ssh/mykey.pub <userid>@ssh-snm-willerslev.science.ku.dk
 ```
 
 This will prompt for a password to authenticate with the remote
@@ -26,18 +45,32 @@ future logins will use the key pair for authentication, and will
 not prompt for a password (assuming you login from your workstation,
 which has the private part of your key pair).
 
-**NOTE:** The `racimocomp<XX>fl` compute nodes are configured to only
+## Racimocomp systems
+
+You will need to also copy your public key to (one of) the `racimocomp`
+compute nodes, as these do not share a `$HOME` with the willerslev cluster.
+
+**NOTE:** The `racimocomp<NN>fl` compute nodes are configured to only
 accept keys located in the `/etc/ssh/authorized_keys/` folder, which
 can only be written to by users with `sudo` privileges. Contact an admin
-to do this on your behalf.
+to do this on your behalf after you've copied the public key across.
 
-They will have to type the following:
+The admin will have to type the following:
 ```
-sudo cp ~/.ssh/authorized_keys /etc/ssh/authorized_keys/[userid]
-sudo chmod 600 /etc/ssh/authorized_keys/[userid]
-sudo chown [userid]:users /etc/ssh/authorized_keys/[userid]
+sudo cp ~/.ssh/authorized_keys /etc/ssh/authorized_keys/<userid>
+sudo chmod 600 /etc/ssh/authorized_keys/<userid>
+sudo chown <userid>:users /etc/ssh/authorized_keys/<userid>
 ```
-where [userid] is your KU user ID.
+where `<userid>` is your KU user ID.
+
+Or, if the user has copied the key with `ssh-copy-id` such that it
+already has correct ownership and permissions, the following will suffice
+to copy the key to all racimocomp nodes
+([see section below about pssh](#running-a-command-on-multiple-hosts)).
+
+```
+pssh -h ~/.ssh/racimocomp.txt -i sudo cp -a /home/<userid>/.ssh/authorized_keys /etc/ssh/authorized_keys/<userid>
+```
 
 # SSH config file
 
