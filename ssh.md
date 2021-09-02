@@ -1,13 +1,23 @@
 
 # SSH Keys
 
-It's recommended to use SSH keys for authentication to the servers.
+It's recommended to use SSH keys for authentication to the [servers](servers.md).
 Keys are more convenient, because typing a password when logging
 in can be avoided.
+
+SSH keys come as a pair: by convention these are known as the "private" key
+and the "public" key. The private key file should remain on your workstation
+and be carefully protected like you would protect a password. The public key
+file can be copied to many remote systems, and need not be protected.
+The holder of the private key can then authenticate with remote systems that
+carry the corresponding public key. E.g. you can use a single public/private
+key pair to authenticate with the willerslev cluster, the racimo cluster,
+and your github account.
 
 ## Creating a public/private key pair
 
 On your (Mac or Linux) workstation, create the public/private key pair.
+There are several types of keys and by default you will get an RSA pair.
 When prompted for a passphrase, just hit enter so that you
 won't need a password when logging in.
 
