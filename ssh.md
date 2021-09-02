@@ -61,7 +61,8 @@ You will need to also copy your public key to (one of) the `racimocomp`
 compute nodes, as these do not share a `$HOME` with the willerslev cluster.
 
 **NOTE:** The `racimocomp<NN>fl` compute nodes are configured to only
-accept keys located in the `/etc/ssh/authorized_keys/` folder, which
+accept keys located in the file `/etc/ssh/authorized_keys/<userid>`,
+such that the filename matches the user. However this folder
 can only be written to by users with `sudo` privileges. Contact an admin
 to do this on your behalf after you've copied the public key across.
 
