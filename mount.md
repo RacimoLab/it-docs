@@ -54,3 +54,15 @@ If you want to unmount the cluster form your computer, you can just simply run:
 ```
 $ umount ~/Cluster
 ```
+
+### 4. Convenient trick
+
+If you add the following lines:
+
+```
+alias mountcluster="mkdir -p ~/Cluster; sshfs -o allow_other,default_permissions KUID@racimocomp01fl:/home/KUID ~/Cluster"
+alias umountcluster="umount ~/Cluster"
+```
+
+to your `.bash_profile` file with a text editor in your local machine, you will be able to mount the cluster with the `mountcluster` command and unmount it with the `umountcluster` command.
+
