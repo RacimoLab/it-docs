@@ -48,7 +48,7 @@ Available nodes are `racimocomp<NN>fl`, where `<NN>` is in the range 01--07.
 **Racimo group members should use the racimo cluster, not the dandy cluster.**
 
 The "dandy" cluster is located in the "unicph" domain
-and are accessed via the VPN just as for the "racimo" cluster.
+and nodes are accessed via the VPN just as for the "racimo" cluster.
 
 Available nodes are `dandycomp01fl` and `dandycomp02fl`.
 
