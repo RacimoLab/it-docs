@@ -1,5 +1,5 @@
 Users have access to two main clusters, the willerslev cluster, shared
-with members of the broader GeoGenetics group, and the racimo cluster,
+with members of the broader GeoGenetics group, and the (newer) racimo cluster,
 whose access is restricted to member's of Fernando's group. These two
 clusters are accessed differently, and do not share filesystems in
 general (e.g. `$HOME` folders are shared within nodes of a cluster,
@@ -42,6 +42,15 @@ To access these compute nodes,
 Once you are connected to the vpn, you can [`ssh`](ssh.md) directly to
 a racimo cluster compute node.
 Available nodes are `racimocomp<NN>fl`, where `<NN>` is in the range 01--07.
+
+# dandy cluster
+
+**Racimo group members should use the racimo cluster, not the dandy cluster.**
+
+The "dandy" cluster is located in the "unicph" domain
+and are accessed via the VPN just as for the "racimo" cluster.
+
+Available nodes are `dandycomp01fl` and `dandycomp02fl`.
 
 # Installing software
 
