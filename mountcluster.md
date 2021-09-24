@@ -43,10 +43,10 @@ Of course, you can place it wherever you prefer and name it with another name; y
 Now, you can easily mount the filesystem by running this command in your terminal:
 
 ```
-$ sshfs -o allow_other,default_permissions KUID@racimocomp01fl:/home/KUID ~/Cluster
+$ sshfs -o idmap=user KUID@racimocomp01fl:/home/KUID ~/Cluster
 ```
 
-Note that `KUID` needs to be changed to your id and that you can change the directory mounted to your machine (`/home/KUID` in this case) or the server you are connecting to (instead of `racimocomp01fl`, you can connect to `racimocomp02fl`).
+Note that `KUID` needs to be changed to your id and that you can change the directory mounted to your machine (`/home/KUID` in this case) or the server you are connecting to (instead of `racimocomp01fl`, you can connect to `racimocomp02fl`). The `-o idmap=user` option maps the user/group id on the cluster to the user id on your local machine.
 
 
 Congratulations! You can now easily and conveniently access your files from your local machine!
@@ -62,7 +62,7 @@ $ umount ~/Cluster
 If you add the following lines:
 
 ```
-alias mountcluster="mkdir -p ~/Cluster; sshfs -o allow_other,default_permissions KUID@racimocomp01fl:/home/KUID ~/Cluster"
+alias mountcluster="mkdir -p ~/Cluster; sshfs -o idmap=user KUID@racimocomp01fl:/home/KUID ~/Cluster"
 alias umountcluster="umount ~/Cluster"
 ```
 
