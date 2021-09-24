@@ -4,7 +4,7 @@
 
 A folder that is accessible on a remote computer can be *mounted* in your local machine, if you have ssh access to the remote computer. This means that you can create a directory on your local computer that will reflect the contents of a folder in the cluster. I use this method, for example, to edit scripts using my preferred text editor from my local machine (sublime) or to transfer small files back and forth from my local computer to the cluster. This documentation is for macOS and Linux users, although there are also similar methods to do the same on Windows (read this [link](https://www.digitalocean.com/community/tutorials/how-to-use-sshfs-to-mount-remote-file-systems-over-ssh)).
 
-**NOTE**: This works great when the internet connection to the remote computer is good. But if the connection is slow or unreliable, this approach can lead to terminals and editors which freeze when the remote system cannot be accessed. `sshfs` has many options and your milage may vary.
+**NOTE**: This works great when the internet connection to the remote computer is good. But if the connection is slow or unreliable, this approach can lead to a frozen terminal or editor when the remote system cannot be accessed. `sshfs` has many options and your mileage may vary.
 
 ### 1. Install `sshfs`
 
