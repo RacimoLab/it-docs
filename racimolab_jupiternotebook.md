@@ -31,7 +31,7 @@ Notation summary:
     
 It's important to notice that ports (P) must be 1024 >= P <= 65535. More info about ports can be found [here](https://www.ssh.com/ssh/port) and [here](https://linuxhint.com/change_default_ssh_port/).
 
-![](Figure1.png)
+![](racimolab_jupiternotebook/Figure1.png)
 
 **Figure 1.** Schematic representation to run Jupyter Notebook in RacimoLab servers. Highlighted are:
 - Yellow : KU username
@@ -95,10 +95,16 @@ Let me know if you find more problems while using these to run jupyter notebook 
 <a name="script"></a>
 ## 3. Automating script
 
-I wrote the [raju.sh](raju.sh) (yes... not feeling creative to give it a better name :) ) bash script which automates all steps expained in **1. Step by step pipeline**. At the begining of the script, you will find variables which will need to be manually configured (e.g. `ra_us` variable is your KU username, the environment name `envname` or the port numbers `cp`, `lp`). After that, the only manual work left is to figure out which computing node you want to run jupyter notebook on (e.g., 02). Once you've decided for one you can run the following command:
+I wrote the [raju.sh](racimolab_jupiternotebook/raju.sh) (yes... not feeling creative to give it a better name :) ) bash script which automates all steps expained in **1. Step by step pipeline**. At the begining of the script, you will find variables which will need to be manually configured (e.g. `ku_user` variable is your KU username, the environment name `envname` or the port numbers `cp`, `lp` and the default RacimoLab server number `c_def`). After that, the only manual work left is to figure out which RacimoLab server you want to run jupyter notebook on (e.g., 02). Once you've decided for one you can run the following command:
 
 ```bash
 bash raju.sh 02
+```
+
+If you have set a default RacimoLab server number, you can just run:
+
+```bash
+bash raju.sh
 ```
 
 Because the tunnels and the jupyter notebook are running in different tmux sessions, I also incorporated a way to kill those tmux sessions to finish all processes. You can do that by running the following:
@@ -107,7 +113,11 @@ Because the tunnels and the jupyter notebook are running in different tmux sessi
 bash raju.sh 02 kill
 ```
 
-It's important that you also indicate the computing node.
+It's important that you also indicate the computing node. But again, if you have set a default RacimoLab server number, you can just run:
+
+```bash
+bash raju.sh kill
+```
 
 ### 3.1. Script potential issues and important details
 
