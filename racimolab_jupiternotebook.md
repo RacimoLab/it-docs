@@ -52,8 +52,6 @@ It's important to notice that ports (P) must be 1024 >= P <= 65535. More info ab
 
 ```bash
 ssh XXXXXX@racimocompYYfl
-tmon
-ssh SSSSSS
 conda activate env
 jupyter lab --no-browser --port=9999
 ```
