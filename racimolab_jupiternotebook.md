@@ -18,7 +18,7 @@
 
 In this tutorial I'm going to explain the solution I found to run jupyter notebook in the RacimoLab servers remotely from a personal computer. I'm mainly based on [this](https://medium.com/@sankarshan7/how-to-run-jupyter-notebook-in-server-which-is-at-multi-hop-distance-a02bc8e78314) blog post which explains a similar problem. The different steps are summarized in **Figure 1** and explained below. The idea is to create an *ssh tunnel* from a computing node, where your jupyther notebook will be running (Step 1), to the your working station (Step 2), to finally open jupyter notebook in your computer browser (Step 3). I assume you've already installed jupyter notebook and all it's dependences and you know how to login to the Willerslev servers. 
 
-Finally, I provide a bash script which automates the whole process. You might ask... Why not provinding just the script? Well, I decided to post the whole explanation in case someone is interested on what the script does or in case someone else tries to use my script, gets errors and tries to find out what I hard coded on the script. 
+Finally, I provide a bash script which automates the whole process. You might ask... Why not provinding just the script? Well, I decided to post the whole explanation in case someone is interested on what the script does or in case someone else tries to use my script, gets errors and tries to find out what I hard coded on the script. But if you want a short and quick solution, jump to that section.
 
 Notation summary:
 
