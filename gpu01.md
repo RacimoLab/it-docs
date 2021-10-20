@@ -17,6 +17,8 @@ into the gpu01 node.
 
 Use the `nvidia-smi` command to view the current GPU usage. This command
 provides similar information to `top`, but for the GPUs.
+Note the "CUDA Version" near the top of the output. Software that you use with
+the GPUs must support this version of the CUDA drivers.
 
 ```
 $ nvidia-smi 
@@ -105,28 +107,56 @@ This means you should never run "conda activate", you should always use
 a specific named conda environment (which can be activated with
 "conda activate my-env" once the environment "my-env" has been created).
 
+5. Add bioconda and conda-forge channels.
+
+Conda can be configured to look for packages from various sources (known
+as a channel). Conda's own "default" channel includes a variety of packages,
+but we almost always need to supplement this channel to obtain additional
+software. E.g. tensorflow and msprime exist on the conda-forge channel.
+
+```
+conda config --add channels defaults
+conda config --add channels bioconda
+conda config --add channels conda-forge
+```
+
+6. Look at your conda config file
+
+Finally, lets take a look a the conda config file. It should resemble
+the output below. Note that the channels should appear in the reverse
+order to the order in which they were added. This gives the highest
+installation priority to packages from conda-forge.
+
+```
+$ cat ~/.condarc 
+auto_activate_base: false
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+```
+
 ### Creating a conda environment for tensorflow
 
 We'll now create a new conda environment that has tensorflow installed.
 The command below will create a new environment named `tf` (you could call
-it anything though), and will install the `tensorflow-gpu` conda package,
-(which pulls in the `cudnn` and `cudatoolkit` dependencis automatically).
-Conda *should* take care of choosing appropriately recent versions,
-including the Python and tensorflow versions. However, if things go wrong,
-it may be necessary to explicitly specify version numbers (or additional
-package names, to specify the version of a dependency).
-
-In addition, we specify `blas=*=mkl`. This will install the mkl variant
-of blas, which uses the Intel math kernel and markedly improves the speed
-of matrix operations on Intel CPUs. Even though we're planning to use the
-GPUs, many operations still happen on the CPUs.
+it anything though), and will install a build of `tensorflow` that supports
+GPUs via NVIDIA's cudatoolkit. The GPU01 server has CUDA 10.1 (see nvidia-smi
+output as above), so the version of the cudatoolkit must match this.
+And the tensorflow build itself must then work with this specific version
+of the cudatoolkit.
+The build specified below is for tensorflow 2.4.1. At the time of writing
+(October 2021), there were limited version options for appropriate
+tensorflow gpu builds. Note that pip tensorflow packages support gpus,
+but not for our (now old) version of the cuda drivers.
+Welcome to hell.
 
 **Warning: cudnn, cudatoolkit, and tensorflow are all large, so this command
 may take a long time to run. If your current terminal session is not inside
 `tmux` or `screen`, now would be a good time to open a new tmux/screen.**
 
 ```
-conda create -n tf tensorflow-gpu "blas=*=mkl"
+conda create -n tf cudatoolkit=10.1 cudnn "tensorflow=*=gpu_py39h8236f22_0"
 ```
 
 ### Activate and test the conda environment
