@@ -12,7 +12,6 @@ k=""                   #Do not modify this variable
 r=""                   #Do not modify this variable
              
 #2. help function
-
 help()
 {
     echo "Usage: bash $0 [-u,-e,-c,-l,-m,-n,-s,-k,-r,-h]
