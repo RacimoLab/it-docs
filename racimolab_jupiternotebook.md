@@ -132,7 +132,7 @@ Once you regain Wi-Fi connection or reestablished VPN credentials, you just need
 bash raju.sh -r
 ```
 
-This will just establish again the tunnel from your local computer to the RacimoLab server. This will enable you to continue using your jupyter notebook as before. It is possible that if you had a process running, the output might be lost from your browser. Nonetheless, all variables will be kept and you will be able to continue runing other cells witout having to run again cells to load previous processes and variables.
+This will just establish again the tunnel from your local computer to the RacimoLab server. This will enable you to continue using your jupyter notebook as before. It is possible that if you had a process running, the output might be lost from your browser. Nonetheless, all variables will be kept and you will be able to continue runing cells below witout running cells above to load previous processes and variables.
 
 ### 3.1. Script potential issues and important details
 
