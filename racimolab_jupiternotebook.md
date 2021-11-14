@@ -16,9 +16,9 @@
     - 3.1. Script potential issues and important details
 4. [Acknowledgements](#ackn)
 
-In this tutorial I'm going to explain the solution I found to run jupyter notebook in the RacimoLab servers remotely from a personal computer. I'm mainly based on [this](https://medium.com/@sankarshan7/how-to-run-jupyter-notebook-in-server-which-is-at-multi-hop-distance-a02bc8e78314) blog post which explains a similar problem. The different steps are summarized in **Figure 1** and explained below. The idea is to create an *ssh tunnel* from a computing node, where your jupyther notebook will be running (Step 1), to the your working station (Step 2), to finally open jupyter notebook in your computer browser (Step 3). I assume you've already installed jupyter notebook and all it's dependences and you know how to login to the Willerslev servers. 
+In this tutorial I'm going to explain the solution I found to run jupyter notebook in the RacimoLab servers remotely from a personal computer. I'm mainly based on [this](https://medium.com/@sankarshan7/how-to-run-jupyter-notebook-in-server-which-is-at-multi-hop-distance-a02bc8e78314) blog post which explains a similar problem. The different steps are summarized in **Figure 1** and explained below. The idea is to create an *ssh tunnel* from a computing node, where your jupyther notebook will be running (Step 1), to your working station (Step 2), to finally open jupyter notebook in your browser (Step 3). I assume you've already installed jupyter notebook and all it's dependences and you know how to login to the RacimoLab servers. 
 
-Finally, I provide a bash script which automates the whole process. You might ask... Why not provinding just the script? Well, I decided to post the whole explanation in case someone is interested on what the script does or in case someone else tries to use my script, gets errors and tries to find out what I hard coded on the script. But if you want a short and quick solution, jump to that section.
+Finally, I provide a bash script which automates the whole process. You might ask... Why not provinding just the script? Well, I decided to post the whole explanation in case someone is interested on the process and maybe improve it. But if you want a short and quick solution, jump to that section.
 
 Notation summary:
 
@@ -58,7 +58,7 @@ jupyter lab --no-browser --port=9999
 
 ### 1.2. Open the ssh tunnel on your local machine
 
-- On a new terminal, create a shh tunnel with the command shown in Figure 1.3. Xs highlighted in yellow represent your user to connect to Willerslev servers. Again, you must decide a new port Lp (on Figure 1.3, represented as 7s highlighted in green) and indicate Cp (on Figure 1.3, represented as 9s highlighted in purple)
+- On a new terminal, create a shh tunnel with the command shown in Figure 1.3. Xs highlighted in yellow represent your user to connect to RacimoLab servers. Again, you must decide a new port Lp (on Figure 1.3, represented as 7s highlighted in green) and indicate Cp (on Figure 1.3, represented as 9s highlighted in purple)
 
 ```bash
 ssh XXXXXX@racimocompYYfl -L 7777:localhost:9999 -N
@@ -88,36 +88,51 @@ This selects from all processes running, the ones that have the "9999" (port-id)
 
 ### 2.3. ssh termination
 
-Sometimes, when the ssh doesn't receive orders, it automatically closes down. This kills the ssh tunnel. To prevent that, I first run `tmux` or `screen` so that even when my session is killed, the process goes on and it does not stop my jupyter notebook while working. 
+Sometimes, when the ssh hasn't received orders for a while, it automatically closes down. This kills the ssh tunnel. To prevent that, I first start a `tmux` session so that even when my session is killed, the process goes on and it does not stop my jupyter notebook while working. 
 
 Let me know if you find more problems while using these to run jupyter notebook that are not reported here and if you have improvements and suggestions!
 
 <a name="script"></a>
 ## 3. Automating script
 
-I wrote the [raju.sh](racimolab_jupiternotebook/raju.sh) (yes... not feeling creative to give it a better name :) ) bash script which automates all steps expained in **1. Step by step pipeline**. At the begining of the script, you will find variables which will need to be manually configured (e.g. `ku_user` variable is your KU username, the environment name `envname` or the port numbers `cp`, `lp` and the default RacimoLab server number `c_def`). After that, the only manual work left is to figure out which RacimoLab server you want to run jupyter notebook on (e.g., 02). Once you've decided for one you can run the following command:
-
-```bash
-bash raju.sh 02
-```
-
-If you have set a default RacimoLab server number, you can just run:
+I wrote the [raju.sh](racimolab_jupiternotebook/raju.sh) (yes... not feeling creative to give it a better name :) ) bash script which automates all steps expained in **1. Step by step pipeline** and improves in some aspects. If you want to use this script, at the header of the file, you will find variables which will need to be manually configured in order to configure the default variables (e.g. `u` variable is your KU username, the environment name `e` or the port numbers `c`, `l` and the default RacimoLab server number `s`). Once you've configured the default variables, you can run:
 
 ```bash
 bash raju.sh
 ```
 
+Alternatively, you can specify any of those variables by using argumepts. For example, if I want to change the enviroment and the RacimoLab server, I can do so by
+
+```bash
+bash raju.sh -e env2 -s 03
+```
+
+If you want more details on which options you can use, you can run the help command:
+
+
+```bash
+bash raju.sh -h
+```
+
+There are 2 options I want to elaborate more since I believe they are very handy.
+
 Because the tunnels and the jupyter notebook are running in different tmux sessions, I also incorporated a way to kill those tmux sessions to finish all processes. You can do that by running the following:
 
 ```bash
-bash raju.sh 02 kill
+bash raju.sh -k
 ```
 
-It's important that you also indicate the computing node. But again, if you have set a default RacimoLab server number, you can just run:
+This command will kill the tmux sessions, and you can define some other options (in case your previous `raju.sh` run was not with the default options).
+
+Finally, there is the option to reestablish connection to the jupyternotebook by only running the tunnel in case connection was lost due to loosing Wi-Fi connection or VPN dropped. It is important to notice that for reconnection to work the tab in the browser where you had the jupyter nootebook running must not be closed down. 
+
+Once you regain Wi-Fi connection or reestablished VPN credentials, you just need to run:
 
 ```bash
-bash raju.sh kill
+bash raju.sh -r
 ```
+
+This will just establish again the tunnel from your local computer to the RacimoLab server. This will enable you to continue using your jupyter notebook as before. It is possible that if you had a process running, the output might be lost from your browser. Nonetheless, all variables will be kept and you will be able to continue runing other cells witout having to run again cells to load previous processes and variables.
 
 ### 3.1. Script potential issues and important details
 
