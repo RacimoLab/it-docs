@@ -211,7 +211,7 @@ ssh -L 8888:localhost:8888 gpu
 
 And then open the localhost:8888/?token=blah url on your workstation.
 
-A more detailed discussion of ssh tunnelling can be found at:
+A more detailed discussion of ssh tunnelling can be found at https://github.com/RacimoLab/it-docs/blob/main/racimolab_jupiternotebook.md and
 https://github.com/RacimoLab/JupyterNotebook_in_Willerslev_servers
 
 # Running a command on multiple hosts
