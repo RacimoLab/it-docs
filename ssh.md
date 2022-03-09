@@ -1,3 +1,4 @@
+**NOTE:** for troubleshooting advice, see the bottom of this document.
 
 # SSH Keys
 
@@ -42,7 +43,7 @@ $ ssh-keygen -l -f ~/.ssh/id_rsa
 
 ## Transferring the key to the server
 
-Transfer the public part of your key pair to the remote server.
+Transfer the **public** part of your key pair to the remote server.
 This can be done manually, but the easiest way is:
 
 ```
@@ -54,6 +55,11 @@ server in order to copy the file. Once successful though,
 future logins will use the key pair for authentication, and will
 not prompt for a password (assuming you login from your workstation,
 which has the private part of your key pair).
+
+**NOTE**: `ssh-copy-id` will blindly append the given key file to the
+remote `~/.ssh/authorized_keys` file. If you made a mistake or copied
+the same key multiple times, you may want to edit this file! Each line
+in the file corresponds to one key.
 
 ## Racimocomp systems
 
@@ -261,3 +267,20 @@ $ pssh -h ~/.ssh/racimocomp.txt -i uptime
 [7] 12:17:37 [SUCCESS] racimocomp05fl
  12:17:37 up 53 days, 18:09,  0 users,  load average: 0.23, 0.06, 0.02
 ```
+
+# Troubleshooting
+
+Your two main troubleshooting tools:
+* `man ssh`. You did read the manual, right?
+* `ssh -vvv <remote-computer>`. This enables verbosity level 3
+  when attempting to log into `<remote-computer>`.
+
+If you have copied your public key, but still cannot log in, check the following things:
+* On the remote system, the permissions of the `~/.ssh/` folder and
+  `~/.ssh/authorized_keys` file must be readable by only your user.
+* On your local computer, the `~/.ssh` folder and the private key file
+  must be readable by only your user.
+* On your local computer, the private key must be named according to
+  the default name for the given key type (e.g. `~/.ssh/id_rsa`).
+  If you specified your own filename, then you must tell ssh the filename for the
+  key using the `-i` option. See the manual page for details. Or rename your key.
