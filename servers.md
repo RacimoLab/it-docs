@@ -1,6 +1,6 @@
 Users have access to two main clusters, the willerslev cluster, shared
 with members of the broader GeoGenetics group, and the (newer) racimo cluster,
-whose access is restricted to member's of Fernando's group. These two
+whose access is restricted to members of Fernando's group. These two
 clusters are accessed differently, and do not share filesystems in
 general (e.g. `$HOME` folders are shared within nodes of a cluster,
 but not shared *between* the two clusters). For new projects that don't
