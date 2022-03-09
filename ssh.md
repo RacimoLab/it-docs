@@ -271,7 +271,7 @@ $ pssh -h ~/.ssh/racimocomp.txt -i uptime
 # Troubleshooting
 
 Your two main troubleshooting tools:
-* `man ssh`. You did read the manual, right?
+* `man ssh` and `man ssh_config`. You did read the manual, right?
 * `ssh -vvv <remote-computer>`. This enables verbosity level 3
   when attempting to log into `<remote-computer>`.
 
