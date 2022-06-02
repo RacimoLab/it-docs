@@ -3,8 +3,8 @@ with members of the broader GeoGenetics group, and the (newer) racimo cluster,
 whose access is restricted to members of Fernando's group. These two
 clusters are accessed differently, and do not share filesystems in
 general (e.g. `$HOME` folders are shared within nodes of a cluster,
-but not shared *between* the two clusters). For new projects that don't
-need GPU resources, using the racimo cluster should be preferred.
+but not shared *between* the two clusters).
+Using the racimo cluster should be preferred.
 
 # willerslev cluster
 
@@ -22,14 +22,6 @@ at this step may indicate a transient problem or lack of access.
 * `biceps-snm`
 * `triceps-snm`
 * `compute<NN>-snm-willerslev`, where `<NN>` is in the range 07--12.
-* `gpu01-snm-willerslev`
-
-## gpu01-snm-willerslev
-
-This node has 5x Tesla T4 GPUs, and has different access restrictions
-to the other compute nodes in the willerslev cluster.
-Contact Fernando or Graham to get access. See [gpu01.md](gpu01.md)
-for additional details about using the GPUs on this system.
 
 # racimo cluster
 
@@ -41,7 +33,15 @@ To access these compute nodes,
 
 Once you are connected to the vpn, you can [`ssh`](ssh.md) directly to
 a racimo cluster compute node.
-Available nodes are `racimocomp<NN>fl`, where `<NN>` is in the range 01--07.
+Available nodes are `racimocomp<NN>fl`, where `<NN>` is in the range 01--07,
+and `racimogpu01fl`.
+
+## racimogpu01fl
+
+This node has 5x Tesla T4 GPUs, and in general should be used only
+for jobs that (also) need GPU resources.
+See [gpu01.md](gpu01.md)
+for additional details about using the GPUs on this system.
 
 # dandy cluster
 
