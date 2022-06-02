@@ -151,7 +151,7 @@ channels:
 **Warning: as of June 2022 we now have CUDA drivers 11.7, so the paragraph
 below is out of date. It should now be possible to use newer versions of
 cudatoolkit and tensorflow than indicated below, which is probably
-preferred (and simpler!).
+preferred (and simpler!).**
 
 We'll now create a new conda environment that has tensorflow installed.
 The command below will create a new environment named `tf` (you could call
