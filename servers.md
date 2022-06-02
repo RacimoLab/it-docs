@@ -135,3 +135,48 @@ should be preferred. E.g.
 ```
 pssh -h ~/.ssh/racimocomp.txt -i sudo yum install -y emacs
 ```
+
+### Synchronising packages between redhat systems
+
+Create a list of packages from a source node where the packages are
+already installed.
+```
+[srx907@racimocomp01fl ~]$ sudo yum list --installed > yum-list
+[srx907@racimocomp01fl ~]$ head yum-list
+Updating Subscription Management repositories.
+Installed Packages
+ImageMagick.x86_64                                  6.9.10.86-1.el8                                   @Default_Organization_EPEL_EPEL_8
+ImageMagick-c++.x86_64                              6.9.10.86-1.el8                                   @Default_Organization_EPEL_EPEL_8
+ImageMagick-c++-devel.x86_64                        6.9.10.86-1.el8                                   @Default_Organization_EPEL_EPEL_8
+ImageMagick-devel.x86_64                            6.9.10.86-1.el8                                   @Default_Organization_EPEL_EPEL_8
+ImageMagick-libs.x86_64                             6.9.10.86-1.el8                                   @Default_Organization_EPEL_EPEL_8
+LibRaw.x86_64                                       0.19.5-3.el8                                      @rhel-8-for-x86_64-appstream-rpms
+ModemManager-glib.x86_64                            1.10.8-4.el8                                      @rhel-8-for-x86_64-baseos-rpms
+NetworkManager.x86_64                               1:1.32.10-4.el8                                   @rhel-8-for-x86_64-baseos-rpms
+```
+
+Double check the awk command to get the list of packages to install.
+```
+[srx907@racimogpu01fl ~]$ awk 'NR>2 {print $1}' yum-list | head
+ImageMagick.x86_64
+ImageMagick-c++.x86_64
+ImageMagick-c++-devel.x86_64
+ImageMagick-devel.x86_64
+ImageMagick-libs.x86_64
+LibRaw.x86_64
+ModemManager-glib.x86_64
+NetworkManager.x86_64
+NetworkManager-config-server.noarch
+NetworkManager-libnm.x86_64
+```
+
+Install those packages on the destination node where the packages need
+to be installed. It's possible that some packages won't be available on
+the destination node, e.g. due to differences in available repositories
+between the GPU and CPU nodes. These packages can be skipped by passing
+the `--skip-broken` flag to `yum install`.
+
+```
+[srx907@racimogpu01fl ~]$ awk 'NR>2 {print $1}' yum-list | xargs sudo yum install --skip-broken -y
+...
+```
