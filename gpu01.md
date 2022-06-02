@@ -9,45 +9,55 @@ This node has:
 
 # Logging in
 
-Ssh to the head node of the willerslev cluster, and from there ssh to
-`gpu01-snm-willerslev`. The rest of this document assumes you're logged
-into the gpu01 node.
+Ssh to `racimogpu01fl` just like for the
+[racimocomp nodes](servers.md#racimo-cluster).
+The rest of this document assumes you're logged into the gpu01 node.
 
 # Status
 
 Use the `nvidia-smi` command to view the current GPU usage. This command
 provides similar information to `top`, but for the GPUs.
 Note the "CUDA Version" near the top of the output. Software that you use with
-the GPUs must support this version of the CUDA drivers.
+the GPUs must be compatible with the CUDA drivers. In general, the drivers
+are backwards compatible, so older versions of cudnn/cudatoolkit should
+work with newer drivers. But newer cudnn/cudatoolkit versions may
+impose a minimum version requirement for the drivers.
 
 ```
-$ nvidia-smi 
-Mon May 17 10:13:53 2021       
+[srx907@racimogpu01fl ~]$ nvidia-smi 
+Thu Jun  2 12:09:50 2022       
 +-----------------------------------------------------------------------------+
-| NVIDIA-SMI 418.87.00    Driver Version: 418.87.00    CUDA Version: 10.1     |
+| NVIDIA-SMI 515.43.04    Driver Version: 515.43.04    CUDA Version: 11.7     |
 |-------------------------------+----------------------+----------------------+
 | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
 | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
 |===============================+======================+======================|
 |   0  Tesla T4            Off  | 00000000:06:00.0 Off |                    0 |
-| N/A   68C    P8    15W /  70W |     10MiB / 15079MiB |      0%      Default |
+| N/A   70C    P8    21W /  70W |      2MiB / 15360MiB |      0%      Default |
+|                               |                      |                  N/A |
 +-------------------------------+----------------------+----------------------+
 |   1  Tesla T4            Off  | 00000000:2F:00.0 Off |                    0 |
-| N/A   71C    P8    12W /  70W |     10MiB / 15079MiB |      0%      Default |
+| N/A   73C    P8    21W /  70W |      2MiB / 15360MiB |      0%      Default |
+|                               |                      |                  N/A |
 +-------------------------------+----------------------+----------------------+
 |   2  Tesla T4            Off  | 00000000:30:00.0 Off |                    0 |
-| N/A   65C    P8    12W /  70W |     10MiB / 15079MiB |      0%      Default |
+| N/A   65C    P8    20W /  70W |      2MiB / 15360MiB |      0%      Default |
+|                               |                      |                  N/A |
 +-------------------------------+----------------------+----------------------+
 |   3  Tesla T4            Off  | 00000000:86:00.0 Off |                    0 |
-| N/A   50C    P8    10W /  70W |     10MiB / 15079MiB |      0%      Default |
+| N/A   49C    P8    16W /  70W |      2MiB / 15360MiB |      0%      Default |
+|                               |                      |                  N/A |
 +-------------------------------+----------------------+----------------------+
 |   4  Tesla T4            Off  | 00000000:AF:00.0 Off |                    0 |
-| N/A   51C    P8    11W /  70W |     10MiB / 15079MiB |      0%      Default |
+| N/A   51C    P8    17W /  70W |      2MiB / 15360MiB |      0%      Default |
+|                               |                      |                  N/A |
 +-------------------------------+----------------------+----------------------+
                                                                                
 +-----------------------------------------------------------------------------+
-| Processes:                                                       GPU Memory |
-|  GPU       PID   Type   Process name                             Usage      |
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
 |=============================================================================|
 |  No running processes found                                                 |
 +-----------------------------------------------------------------------------+
@@ -137,6 +147,11 @@ channels:
 ```
 
 ### Creating a conda environment for tensorflow
+
+**Warning: as of June 2022 we now have CUDA drivers 11.7, so the paragraph
+below is out of date. It should now be possible to use newer versions of
+cudatoolkit and tensorflow than indicated below, which is probably
+preferred (and simpler!).
 
 We'll now create a new conda environment that has tensorflow installed.
 The command below will create a new environment named `tf` (you could call
