@@ -109,14 +109,14 @@ To login to a willerslev compute node, usually one needs to first ssh into the
 the "login node", or the "bastion node"), and then ssh to one of the
 compute nodes. This can be inconvenient if you're always logging in
 to the same compute node. With the following addition to the
-`~/.ssh/config` file, user abc123 can login to the `gpu01` compute
-node from their workstation using one command (`ssh gpu`).
+`~/.ssh/config` file, user abc123 can login to the `compute11` compute
+node from their workstation using one command (`ssh c11`).
 The `ProxyJump snm` line assumes a correctly setup `Host snm` block
 as above.
 
 ```
-Host gpu
-	Hostname gpu01-snm-willerslev
+Host c11
+	Hostname compute11-snm-willerslev
 	User abc123
 	ProxyJump snm
 	ServerAliveInterval 60
@@ -147,7 +147,7 @@ Match all
 	# you're not typing.
 	ServerAliveInterval 60
 
-Host r0? racimocomp0?fl gpu snm
+Host r0? racimocomp0?fl gpu snm c??
 	User abc123
 	# Run graphical programs on the remote system.
 	#ForwardX11 yes
@@ -155,31 +155,38 @@ Host r0? racimocomp0?fl gpu snm
 
 Host r01
 	Hostname racimocomp01fl
-
 Host r02
 	Hostname racimocomp02fl
-
 Host r03
 	Hostname racimocomp03fl
-
 Host r04
 	Hostname racimocomp04fl
-
 Host r05
 	Hostname racimocomp05fl
-
 Host r06
 	Hostname racimocomp06fl
-
 Host r07
 	Hostname racimocomp07fl
-
+Host gpu
+	Hostname racimogpu01fl
+    
 Host snm
 	Hostname ssh-snm-willerslev.science.ku.dk
-
-Host gpu
-	Hostname gpu01-snm-willerslev
+Host c??
 	ProxyJump snm
+
+Host c07
+	Hostname compute07-snm-willerslev
+Host c08
+	Hostname compute08-snm-willerslev
+Host c09
+	Hostname compute09-snm-willerslev
+Host c10
+	Hostname compute10-snm-willerslev
+Host c11
+	Hostname compute11-snm-willerslev
+Host c12
+	Hostname compute12-snm-willerslev
 ```
 
 # SSH port forwarding
@@ -207,15 +214,16 @@ $ jupyter notebook
         http://localhost:8888/?token=347d4aac1750407b8709847054ec7c76afe521405fa740b6
      or http://127.0.0.1:8888/?token=347d4aac1750407b8709847054ec7c76afe521405fa740b6
 ```
-
-Then assuming you have the `ProxyJump` setup in your `.ssh/config` as outlined in
-the section above, you can forward port 8888 on gpu01 to port 8888 on your
+ 
+You can then forward port 8888 on gpu01 to port 8888 on your
 workstation by running the following command on your workstation:
 ```
 ssh -L 8888:localhost:8888 gpu
 ```
-
 And then open the localhost:8888/?token=blah url on your workstation.
+
+For willerslev nodes this assumes you have the `ProxyJump` bits in your `.ssh/config`
+as outlined in the section above.
 
 A more detailed discussion of ssh tunnelling can be found at https://github.com/RacimoLab/it-docs/blob/main/racimolab_jupiternotebook.md and
 https://github.com/RacimoLab/JupyterNotebook_in_Willerslev_servers
