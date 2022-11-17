@@ -1,33 +1,9 @@
-Users have access to two main clusters, the willerslev cluster, shared
-with members of the broader GeoGenetics group, and the (newer) racimo cluster,
-whose access is restricted to members of Fernando's group. These two
-clusters are accessed differently, and do not share filesystems in
-general (e.g. `$HOME` folders are shared within nodes of a cluster,
-but not shared *between* the two clusters).
-Using the racimo cluster should be preferred.
-
-# willerslev cluster
-
-The "willerslev" cluster is located in the "science" domain.
-To access these compute nodes, first [`ssh`](ssh.md) to the head node
-`ssh-snm-willerslev.science.ku.dk` with your kuid and then [`ssh`](ssh.md) to
-the desired compute node (listed below).
-The latter step should not prompt for a password, and a password prompt
-at this step may indicate a transient problem or lack of access.
-
-* `candy-snm`
-* `wonton-snm`
-* `dimsum-snm`
-* `taco-snm`
-* `biceps-snm`
-* `triceps-snm`
-* `compute<NN>-snm-willerslev`, where `<NN>` is in the range 07--12.
+Users gain access to a given cluster after starting a project in the Racimo group.
+Contact Fernando to obtain access.
 
 # racimo cluster
 
 The "racimo" cluster is located in the "unicph" domain.
-These compute nodes are accessed differently to the willerslev nodes,
-so you **should not** logon to the willerslev head node.
 To access these compute nodes,
 [connect to the university's Cisco AnyConnect VPN](vpn.md).
 
@@ -52,6 +28,32 @@ and nodes are accessed via the VPN just as for the "racimo" cluster.
 
 Available nodes are `dandycomp01fl` and `dandycomp02fl`.
 
+
+# willerslev cluster
+
+The willerslev cluster is shared with the GeoGenetics group, and should
+only be used for collaborative projects with that group. This
+cluster is accessed differently from the racimo cluster, and does
+not share filesystems in general (e.g. `$HOME` folders are shared
+within nodes of a cluster, but not shared *between* the two clusters).
+Using the racimo cluster should be preferred.
+
+The "willerslev" cluster is located in the "science" domain, and
+it should not be necessary to connect to the VPN before logging in to this cluster.
+To access these compute nodes, first [`ssh`](ssh.md) to the head node
+`ssh-snm-willerslev.science.ku.dk` with your kuid and then [`ssh`](ssh.md) to
+the desired compute node (listed below).
+The latter step should not prompt for a password, and a password prompt
+at this step may indicate a transient problem or lack of access.
+
+* `candy-snm`
+* `wonton-snm`
+* `dimsum-snm`
+* `taco-snm`
+* `biceps-snm`
+* `triceps-snm`
+* `compute<NN>-snm-willerslev`, where `<NN>` is in the range 07--12.
+
 # Installing software
 
 ## conda
@@ -61,12 +63,7 @@ be installed under your `$HOME` in a [`conda` environment](conda.md).
 
 ## RHEL packages (rpm/yum)
 
-While the racimocomp systems are still new, it is likely that there are
-missing software packages that ought to be installed from the RedHat
-repositories; e.g. editors, compilers, and some `*-devel` packages.
-This should not be neccessary for the willerslev systems.
-
-**NOTE:** sudo privileges required.
+**NOTE:** sudo privileges required. Ignore this section if you don't have sudo rights.
 
 Suppose we wish to install `emacs`. Using the `yum` package manager,
 search for the package to be installed using `yum list` or `yum search`.
