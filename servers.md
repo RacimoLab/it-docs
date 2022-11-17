@@ -19,6 +19,21 @@ for jobs that (also) need GPU resources.
 See [gpu01.md](gpu01.md)
 for additional details about using the GPUs on this system.
 
+## filesystems
+
+Users have 10 Gb of storage under `$HOME`, which is enough for only small items.
+Temporary folders are not shared between cluster nodes and are not backed up.
+In general, other folders are both shared between cluster nodes and backed up.
+
+path | available space | type | shared between nodes | description
+--- | --- | --- | --- | ---
+`$HOME` | 10 Gb | network | yes | Personal directory.
+`/tmp` | 30 Gb | local | no | Temporary storage. 
+`/scratch` | 1 Tb | local | no | Temporary storage.
+`/projects/racimolab/scratch` | ? | network | no | Temporary storage.
+`/projects/racimolab/people/<kuid>` | ? | network | yes | Create your own folder and use it for your projects.
+`/projects/racimolab/data` |? | network | yes | Use for your data.
+
 # dandy cluster
 
 **Racimo group members should use the racimo cluster, not the dandy cluster.**
@@ -56,10 +71,13 @@ at this step may indicate a transient problem or lack of access.
 
 # Installing software
 
-## conda
+## conda / mamba
+
+**Note**: conda sucks. Use [`mamba`](https://mamba.readthedocs.io/en/latest/) instead. It sucks slightly less.
 
 Software required to run a bioinformatics or analysis pipeline should
-be installed under your `$HOME` in a [`conda` environment](conda.md).
+be installed in a [`conda` environment](conda.md).
+It is likely that `$HOME` has insufficient space, so you should install conda somewhere else (e.g. `/projects/racimolab/people/<kuid>/conda`).
 
 ## RHEL packages (rpm/yum)
 
