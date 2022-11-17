@@ -19,6 +19,19 @@ for jobs that (also) need GPU resources.
 See [gpu01.md](gpu01.md)
 for additional details about using the GPUs on this system.
 
+## cluster nodes
+
+hostname | CPU | cores | RAM | GPU | notes
+--- | --- | --- | --- | --- | ---
+`racimocomp01fl` | Xeon 6248R @ 3 Ghz | 96 | 768 Gb | |
+`racimocomp02fl` | Xeon 6248R @ 3 Ghz | 96 | 768 Gb | |
+`racimocomp03fl` | Xeon 6248R @ 3 Ghz | 96 | 768 Gb | |
+`racimocomp04fl` | Xeon 6248R @ 3 Ghz | 96 | 768 Gb | |
+`racimocomp05fl` | Xeon 6248R @ 3 Ghz | 96 | 768 Gb | |
+`racimocomp06fl` | Xeon 6248R @ 3 Ghz | 96 | 768 Gb | |
+`racimocomp07fl` | Xeon 6248R @ 3 Ghz | 96 | 768 Gb | |
+`racimogpu01fl` | Xeon 6248 @ 2.5 Ghz | 80 | 768 Gb | 5x Tesla T4 | See [gpu01.md](gpu01.md). No `/scratch` folder.
+
 ## filesystems
 
 Users have 10 Gb of storage under `$HOME`, which is enough for only small items.
