@@ -1,3 +1,8 @@
+
+**Note**: conda sucks. Use [`mamba`](https://mamba.readthedocs.io/en/latest/) instead. It sucks slightly less.
+
+**Note**: On the racimo cluster, `$HOME` has insufficient space, so you should install conda somewhere else (e.g. `/projects/racimolab/people/<kuid>/conda`).
+
 # TODO
 
 Please help!
