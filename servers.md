@@ -215,26 +215,27 @@ Every now and then, some of these machines may have issues, either for a single 
 If after discussing the issue it is deemed necessary to report this to KU-IT, please follow these steps:
 
 
-## Step No 1
+### Step No 1
 First log into the IT service portal and choose “create ticket” at https://serviceportal.ku.dk/CherwellPortal/IT
 
-## Step No2
+### Step No2
 Then select **“Research IT”** from the Service Catalog
 Then select **“Research Applications and Services”**
 Then select **“Error”**
 
-## Step No3
+### Step No3
 You should now have a new window open where you can report your issue.
 In the first text box, write a small summary of the issue you are experiencing.
 Remember to write the name of the machine e.g. **racimocomp04fl**
 Choose **“Error on a KU hosted HPC system”** as the type of error from the drop down menu.
 Submit the ticket.
 
-## Step No3
+### Step No3
 You should now have recieved an automatic email in your KU mail about the ticket.
-Once you have the ticket, please forward the ticket email to Jørn Jensen <**joje@adm.ku.dk**>, informing them of the existance of the ticket and the urgency (if there is one)
-and CC Fernando in the mail
+If possible, once you have the ticket, feel free to forward the ticket email to any IT person that has recently contacted you about the server, informing them of the existance of the ticket and the urgency (if there is one).
+This can help as sometimes tickets may sit without a response for some time.
+If you do, CC Fernando in the mail.
 
-## Step No4
+### Step No4
 Patiently await the respone from KU-IT!
 
