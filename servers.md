@@ -208,3 +208,33 @@ the `--skip-broken` flag to `yum install`.
 [srx907@racimogpu01fl ~]$ awk 'NR>2 {print $1}' yum-list | xargs sudo yum install --skip-broken -y
 ...
 ```
+
+# Reporting Server Issues
+
+Every now and then, some of these machines may have issues, either for a single user or for everyone.
+If after discussing the issue it is deemed necessary to report this to KU-IT, please follow these steps:
+
+
+## Step No 1
+First log into the IT service portal and choose “create ticket” at https://serviceportal.ku.dk/CherwellPortal/IT
+
+## Step No2
+Then select **“Research IT”** from the Service Catalog
+Then select **“Research Applications and Services”**
+Then select **“Error”**
+
+## Step No3
+You should now have a new window open where you can report your issue.
+In the first text box, write a small summary of the issue you are experiencing.
+Remember to write the name of the machine e.g. **racimocomp04fl**
+Choose **“Error on a KU hosted HPC system”** as the type of error from the drop down menu.
+Submit the ticket.
+
+## Step No3
+You should now have recieved an automatic email in your KU mail about the ticket.
+Once you have the ticket, please forward the ticket email to Jørn Jensen <**joje@adm.ku.dk**>, informing them of the existance of the ticket and the urgency (if there is one)
+and CC Fernando in the mail
+
+## Step No4
+Patiently await the respone from KU-IT!
+
